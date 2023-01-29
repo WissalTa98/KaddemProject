@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class Contrat {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContrat;
     private LocalDate dateDebutContrat;
     private LocalDate dateFinContrat;
@@ -18,5 +19,9 @@ public class Contrat {
 
     @Enumerated(EnumType.STRING)
     private Specialite specialite;
+
+    @ManyToOne
+    @JoinColumn(name = "etudiant_id")
+    private Etudiant etudiant;
 
 }
