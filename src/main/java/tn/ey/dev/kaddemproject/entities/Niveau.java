@@ -5,4 +5,4 @@ public enum Niveau {
     SENIOR,
     EXPERT;
 
-    }
+}

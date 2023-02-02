@@ -1,13 +1,16 @@
 package tn.ey.dev.kaddemproject.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Table( name = "etudiant")
+@Table(name = "etudiant")
 @Entity
+@Data
 public class Etudiant {
 
     @Id

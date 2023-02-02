@@ -1,9 +1,12 @@
 package tn.ey.dev.kaddemproject.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-@Table( name = "detailEquipe")
+@Table(name = "detailEquipe")
 @Entity
+@Data
 public class DetailEquipe {
 
     @Id

@@ -1,10 +1,14 @@
 package tn.ey.dev.kaddemproject.entities;
+
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table( name = "departement")
+@Table(name = "departement")
 @Entity
+@Data
 public class Departement {
 
     @Id

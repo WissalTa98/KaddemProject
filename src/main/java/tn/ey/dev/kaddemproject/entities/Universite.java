@@ -1,10 +1,13 @@
 package tn.ey.dev.kaddemproject.entities;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Table( name = "universite")
 @Entity
+@Data
 public class Universite {
 
     @Id
@@ -12,8 +15,8 @@ public class Universite {
     private int idUniv;
     private String nomUniv;
 
-    @OneToMany( cascade = CascadeType.ALL,
-                orphanRemoval = true
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     @JoinColumn(name = "university_id")
     private List<Departement> departements = new ArrayList<>();

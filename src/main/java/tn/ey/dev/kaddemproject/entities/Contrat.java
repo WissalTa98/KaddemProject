@@ -1,12 +1,13 @@
 package tn.ey.dev.kaddemproject.entities;
 
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Table ( name = "contrat")
+@Table(name = "contrat")
 @Entity
+@Data
 public class Contrat {
 
     @Id

@@ -1,10 +1,14 @@
 package tn.ey.dev.kaddemproject.entities;
+
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table( name = "equipe")
+@Table(name = "equipe")
 @Entity
+@Data
 public class Equipe {
 
     @Id
@@ -22,8 +26,8 @@ public class Equipe {
 
     @ManyToMany
     @JoinTable(name = "equipe_etudiant",
-                    joinColumns = @JoinColumn(name = "equipe_id"),
-                    inverseJoinColumns = @JoinColumn(name = "etudiant_id")
+            joinColumns = @JoinColumn(name = "equipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "etudiant_id")
     )
     private Set<Etudiant> assignedEtudiants = new HashSet<>();
 
