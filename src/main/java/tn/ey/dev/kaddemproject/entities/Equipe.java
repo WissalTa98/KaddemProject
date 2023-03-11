@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Table(name = "equipe")
 @Entity
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,9 +27,7 @@ public class Equipe {
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
 
-    @OneToOne(
-            mappedBy = "equipe",
-            cascade = CascadeType.ALL)
+    @OneToOne
     private DetailEquipe detailEquipe;
 
     @ManyToMany

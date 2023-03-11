@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import tn.ey.dev.kaddemproject.entities.Etudiant;
 
 public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
+    Etudiant findByNomEAndPrenomE(String nomE, String prenomE);
 }
