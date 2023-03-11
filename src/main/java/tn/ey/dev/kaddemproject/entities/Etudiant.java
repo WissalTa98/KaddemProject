@@ -1,26 +1,28 @@
 package tn.ey.dev.kaddemproject.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Table(name = "etudiant")
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Etudiant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private int idEtudiant;
     private String prenomE;
     private String nomE;
 
     @ManyToOne
-    @JoinColumn(name = "dept_id")
+    //@JoinColumn(name = "dept_id")
     private Departement departement;
 
     @Enumerated(EnumType.STRING)
@@ -28,12 +30,11 @@ public class Etudiant {
 
     @OneToMany(
             mappedBy = "etudiant",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
-    private List<Contrat> contrats = new ArrayList<>();
+    private List<Contrat> contrats;
 
-    @ManyToMany(mappedBy = "assignedEtudiants")
-    private Set<Equipe> equipesSet = new HashSet<>();
+    @ManyToMany(mappedBy = "etudiants")
+    private List<Equipe> equipes;
 
 }

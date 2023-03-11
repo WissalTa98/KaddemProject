@@ -1,24 +1,27 @@
 package tn.ey.dev.kaddemproject.entities;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Table( name = "universite")
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Universite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private int idUniv;
     private String nomUniv;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            orphanRemoval = true
+    @OneToMany(cascade = CascadeType.ALL
     )
-    @JoinColumn(name = "university_id")
-    private List<Departement> departements = new ArrayList<>();
+    //@JoinColumn(name = "university_id")
+    private List<Departement> departements;
 
 }
