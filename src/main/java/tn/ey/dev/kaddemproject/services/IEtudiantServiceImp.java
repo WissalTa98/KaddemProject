@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class IEtudiantServiceImp implements IEtudiantServices{
-    @Autowired
+    //@Autowired
     private EtudiantRepository etudiantRepository;
     private final DepartementRepository departementRepository;
     private final ContratRepository contratRepository;
