@@ -1,5 +1,6 @@
 package tn.ey.dev.kaddemproject.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import tn.ey.dev.kaddemproject.services.IEquipeServices;
 
 import java.util.List;
 
+@Tag(name = "Equipe")
 @RestController
 @RequestMapping("equipe")
 @RequiredArgsConstructor
@@ -34,5 +36,9 @@ public class EquipeController {
     private Equipe updateEquipe(@RequestBody Equipe equipe){
         iEquipeServices.updateEquipe(equipe);
         return equipe;
+    }
+    @PostMapping("/evoluerEquipes")
+    public void faireEvoluerEquipes(){
+        iEquipeServices.faireEvoluerEquipes();
     }
 }

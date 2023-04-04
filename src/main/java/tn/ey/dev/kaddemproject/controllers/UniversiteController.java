@@ -1,13 +1,16 @@
 package tn.ey.dev.kaddemproject.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.ey.dev.kaddemproject.entities.Departement;
 import tn.ey.dev.kaddemproject.entities.Universite;
 import tn.ey.dev.kaddemproject.services.IUniversiteServices;
 
 import java.util.List;
 
+@Tag(name = "Universite")
 @RestController
 @RequestMapping("universite")
 @RequiredArgsConstructor
@@ -39,5 +42,9 @@ public class UniversiteController {
     @PutMapping("{idUniversite}/{idDepartement}")
     public void assignUniversiteToDepartement(@PathVariable Integer idUniversite, @PathVariable Integer idDepartement) {
         iUniversiteServices.assignUniversiteToDepartement(idUniversite,idDepartement);
+    }
+    @PutMapping("DepartementByUniversite")
+    public List<Departement> retrieveDepartementsByUniversite(@PathVariable Integer idUniversite) {
+        return iUniversiteServices.retrieveDepartementsByUniversite(idUniversite);
     }
 }

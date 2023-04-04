@@ -1,5 +1,6 @@
 package tn.ey.dev.kaddemproject.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import tn.ey.dev.kaddemproject.services.IDepartementServices;
 
 import java.util.List;
 
+@Tag(name = "Departement")
 @RestController
 @RequestMapping("departement")
 @RequiredArgsConstructor

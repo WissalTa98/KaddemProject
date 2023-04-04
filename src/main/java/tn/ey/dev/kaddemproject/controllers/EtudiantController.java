@@ -1,5 +1,6 @@
 package tn.ey.dev.kaddemproject.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import tn.ey.dev.kaddemproject.services.IEtudiantServices;
 
 import java.util.List;
 
+@Tag(name = "Etudiant")
 @RestController
 @RequestMapping("etudiant")
 @RequiredArgsConstructor
@@ -42,5 +44,9 @@ public class EtudiantController {
     @PostMapping("{idContrat}/{idEquipe}")
     public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable Integer idContrat, @PathVariable Integer idEquipe) {
         return iEtudiantServices.addAndAssignEtudiantToEquipeAndContract(e,idContrat,idEquipe);
+    }
+    @GetMapping("/getEtudiantsByDepartement/{idDepartement}")
+    public List<Etudiant> getEtudiantsByDepartement(@PathVariable Integer idDepartement) {
+        return iEtudiantServices.getEtudiantsByDepartement(idDepartement);
     }
 }

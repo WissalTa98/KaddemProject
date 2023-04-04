@@ -1,10 +1,8 @@
 package tn.ey.dev.kaddemproject.entities;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.List;
 
-@Table( name = "universite")
 @Entity
 @Getter
 @Setter
@@ -19,8 +17,7 @@ public class Universite {
     private int idUniv;
     private String nomUniv;
 
-    @OneToMany(cascade = CascadeType.ALL
-    )
+    @OneToMany
     //@JoinColumn(name = "university_id")
     private List<Departement> departements;
 

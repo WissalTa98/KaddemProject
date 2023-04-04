@@ -1,5 +1,7 @@
 package tn.ey.dev.kaddemproject.services;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.ey.dev.kaddemproject.entities.DetailEquipe;
@@ -8,8 +10,10 @@ import tn.ey.dev.kaddemproject.repositories.DetailEquipeRepository;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class IDetailEquipeServiceImp implements IDetailEquipeServices{
-    @Autowired
+    //@Autowired
     private DetailEquipeRepository detailEquipeRepository;
     @Override
     public void ajouterDetailEquipe(DetailEquipe de) {

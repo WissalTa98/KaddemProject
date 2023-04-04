@@ -1,11 +1,9 @@
 package tn.ey.dev.kaddemproject.entities;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name = "etudiant")
 @Entity
 @Getter
 @Setter
@@ -29,9 +27,7 @@ public class Etudiant {
     private Option option;
 
     @OneToMany(
-            mappedBy = "etudiant",
-            cascade = CascadeType.ALL
-    )
+            mappedBy = "etudiant")
     private List<Contrat> contrats;
 
     @ManyToMany(mappedBy = "etudiants")

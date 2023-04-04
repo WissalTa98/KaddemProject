@@ -1,6 +1,7 @@
 package tn.ey.dev.kaddemproject.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,14 +14,16 @@ import tn.ey.dev.kaddemproject.repositories.DepartementRepository;
 import tn.ey.dev.kaddemproject.repositories.UniversiteRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class IUniversiteServicesImp implements IUniversiteServices{
-   // @Autowired
+    //@Autowired
     private UniversiteRepository universiteRepository;
     private final DepartementRepository departementRepository;
     private final ContratRepository contratRepository;
@@ -53,29 +56,18 @@ public class IUniversiteServicesImp implements IUniversiteServices{
     @Transactional
     public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement) {
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
-        Assert.isNull(universite, "Entity must not be null.");
+        Assert.isNull(universite, "Entity must not be Null");
         Departement departement = departementRepository.findById(idDepartement).orElse(null);
-        Assert.isNull(departement, "Entity must not be null.");
+        Assert.isNull(departement, "Entity must not be Null");
         universite.getDepartements().add(departement);
-
-        /*2Method
-        List<Departement> departements = universite.getDepartements();
-        departements.add(departement);
-        universite.setDepartements(departements);*/
         universiteRepository.save(universite);
     }
 
     @Override
-    public Map<String, Float> getMontantContratEntreDeuxDate(Integer idUniversite, LocalDate startDate, LocalDate endDate) {
-        List<Contrat> contrats = contratRepository.findByEtudiant_Departement_Universite_IdAndEstArchiveAndDateDebutGreaterThanEqualAndDateFinLessThanEqual(idUniversite, false, startDate, endDate);
-        Map<String, Float> montantsParSpecialite = new HashMap<>();
-        for (Contrat contrat : contrats) {
-            String specialite = contrat.getSpecialite().name();
-            float montant = montantsParSpecialite.getOrDefault(specialite, 0f);
-            montant += contrat.getMontantContrat();
-            montantsParSpecialite.put(specialite, montant);
-        }
-        return montantsParSpecialite;
+    public List<Departement> retrieveDepartementsByUniversite(Integer idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        Assert.notNull(universite,"Not be Null");
+        return universite.getDepartements();
     }
 
 }

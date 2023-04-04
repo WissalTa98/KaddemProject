@@ -8,7 +8,6 @@ import java.util.List;
 
 @Table(name = "departement")
 @Entity
-@Data
 @Getter
 @Setter
 @AllArgsConstructor

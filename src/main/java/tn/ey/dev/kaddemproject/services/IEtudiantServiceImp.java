@@ -1,6 +1,7 @@
 package tn.ey.dev.kaddemproject.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class IEtudiantServiceImp implements IEtudiantServices{
     //@Autowired
     private EtudiantRepository etudiantRepository;
@@ -57,28 +59,29 @@ public class IEtudiantServiceImp implements IEtudiantServices{
 
         if ((etudiant != null) && (departement != null)){
             etudiant.setDepartement(departement);
-            //departement.getEtudiants().add(etudiant);
             etudiantRepository.save(etudiant);
         }
     }
 
     @Override
-    @Transactional //org.
+    @Transactional
     public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
         Contrat contrat = contratRepository.findById(idContrat).orElse(null);
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
         Assert.notNull(contrat, "Entity must not be null.");
         Assert.notNull(equipe, "Entity must not be null.");
-        //ki yabda 3andi objet jdid mahouch jey ml bd na3mlou 3 ligne hedhom:
         List<Equipe> equipes = new ArrayList<>();
         equipes.add(equipe);
         e.setEquipes(equipes);
-        //5ater 3andich list
         etudiantRepository.saveAndFlush(e);
         e.getEquipes().add(equipe);
         contrat.setEtudiant(e);
-        //contratRepository.save(contrat);
         return e;
+    }
+
+    @Override
+    public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
+        return etudiantRepository.findEtudiantByDepartement(idDepartement);
     }
 
 }
